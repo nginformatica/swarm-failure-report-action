@@ -1,6 +1,6 @@
 name: 'SSH Remote Commands'
 description: 'Executing remote ssh commands'
-author: 'Bo-Yi Wu'
+author: 'Bo-Yi Wu, Paulo Henrique Cuchi'
 inputs:
   host:
     description: 'ssh remote host'
@@ -13,47 +13,16 @@ inputs:
     description: 'ssh username'
   password:
     description: 'ssh password'
-  sync:
-    description: 'synchronous execution if multiple hosts'
-    default: false
-  timeout:
-    description: 'timeout for ssh to remote host'
-    default: "30s"
-  command_timeout:
-    description: 'timeout for ssh command'
-    default: "10m"
   key:
     description: 'content of ssh private key. ex raw content of ~/.ssh/id_rsa'
-  key_path:
-    description: 'path of ssh private key'
-  proxy_host:
-    description: 'ssh proxy remote host'
-  proxy_port:
-    description: 'ssh proxy remote port'
-    default: 22
-  proxy_username:
-    description: 'ssh proxy username'
-  proxy_password:
-    description: 'ssh proxy password'
-  proxy_passphrase:
-    description: 'ssh proxy key passphrase'
-  proxy_timeout:
-    description: 'timeout for ssh to proxy host'
-    default: "30s"
-  proxy_key:
-    description: 'content of ssh proxy private key. ex raw content of ~/.ssh/id_rsa'
-  proxy_key_path:
-    description: 'path of ssh proxy private key'
-  script:
-    description: 'execute commands'
-  script_stop:
-    description: 'stop script after first failure'
-    default: false
-  envs:
-    description: 'pass environment variable to shell script'
-  debug:
-    description: 'enable debug mode'
-    default: false
+  service_name:
+    description: 'the docker swarm service name which was rolled back'
+    required: true
+  log_group_name:
+    required: true
+  log_stream_prefix:
+    required: true
+  
 runs:
   using: 'docker'
   image: 'Dockerfile'
